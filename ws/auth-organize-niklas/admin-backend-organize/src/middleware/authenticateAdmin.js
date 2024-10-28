@@ -1,7 +1,7 @@
 const jwt = require("jsonwebtoken");
 
-const authenticateAdmin = () => {
-  const token = req.cookies.accessToken;
+const authenticateAdmin = (req, res, next) => {
+  const token = req.cookies.admin_token;
 
   if (!token) {
     return res
