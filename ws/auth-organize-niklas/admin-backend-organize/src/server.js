@@ -1,9 +1,22 @@
-const PORT = process.env.ADMIN_PORT || 4000;
+const adminRoutes = require("./routes/adminRoutes");
+const {
+  PORT,
+  AUTH,
+  AUTH_TYPES,
+  HTTP_ONLY,
+  SECURE,
+  SAME_SITE,
+} = require("./config.js");
 
-app.use("/api/admin/auth", authRoutes);
+const app = require("./app.js");
 
-app.use("/api/admin", authenticateAdmin, adminRoutes);
-
-app.listen(PORT, () => {
-  console.log(`Admin server running on port ${PORT}`);
+app.listen(PORT, (err) => {
+  if (err) {
+    console.log(`Failed to start the server ${err}`);
+  }
+  console.log(`server running on port ${PORT}`);
+  console.log(`Using ${AUTH} authentication`);
+  console.log(`HTTPOnly is ${HTTP_ONLY}`);
+  console.log(`Secure is ${SECURE}!`);
+  console.log(`Same site is ${SAME_SITE}`);
 });
